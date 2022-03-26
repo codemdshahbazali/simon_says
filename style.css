@@ -1,0 +1,95 @@
+*,
+*::after,
+::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+}
+
+main {
+  background-color: rgb(179 169 157);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: hsl(240 100% 10% / 0.6);
+  width: min(80vh, 80vw);
+  height: min(80vh, 80vw);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  border-radius: 50%;
+  gap: 15px;
+  padding: 30px;
+  position: relative;
+  border: 1px solid black;
+
+  grid-template-areas:
+    'tile1 tile2'
+    'tile3 tile4';
+}
+
+.tiles {
+  cursor: pointer;
+  opacity: 0.3;
+}
+
+.tiles:active {
+  opacity: 1;
+}
+
+.tile1 {
+  background-color: #34e89e;
+  grid-area: tile1;
+  border-top-left-radius: 100%;
+}
+
+.tile2 {
+  background-color: #ef3b36;
+  grid-area: tile2;
+  border-top-right-radius: 100%;
+}
+
+.tile3 {
+  background-color: #ffc371;
+  grid-area: tile3;
+  border-bottom-left-radius: 100%;
+}
+
+.tile4 {
+  background-color: #1cb5e0;
+  grid-area: tile4;
+  border-bottom-right-radius: 100%;
+}
+
+.score_container {
+  position: absolute;
+  background: radial-gradient(
+      at center center,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 60%,
+      rgb(119, 119, 119) 80%
+    ),
+    rgb(0, 0, 68);
+  color: rgb(255, 255, 255);
+  box-shadow: rgb(0 0 0 / 50%) 2px 2px 10px 0px;
+  width: min(20vh, 20vw);
+  height: min(20vh, 20vw);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  font-size: clamp(16px, 50px, 50px);
+  cursor: pointer;
+}
