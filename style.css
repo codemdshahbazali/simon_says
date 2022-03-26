@@ -90,6 +90,6 @@ main {
   justify-content: center;
   align-items: center;
   z-index: 1;
-  font-size: clamp(16px, 50px, 50px);
+  font-size: min(5vw, 5vh);
   cursor: pointer;
 }
