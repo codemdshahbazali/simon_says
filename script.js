@@ -1,13 +1,8 @@
 let score = 1;
 const patternArr = [];
-const userArr = [];
+let userArr = [];
 
 const scoreElement = document.querySelector('.score_container');
-// const tile1 = document.querySelector('.tile1');
-// const tile2 = document.querySelector('.tile2');
-// const tile3 = document.querySelector('.tile3');
-// const tile4 = document.querySelector('.tile4');
-
 const tiles = document.querySelectorAll('.tiles');
 
 scoreElement.addEventListener('click', () => {
@@ -27,8 +22,10 @@ const generateRand = () => {
   return randNum;
 };
 
-const changeOpacity = (ele, opacityValue) =>
-  (document.querySelector(`#n${ele}`).style.opacity = opacityValue);
+const changeOpacity = (ele, opacityValue) => {
+  console.log(document.querySelector(`#n${ele}`), ' ==> ', opacityValue);
+  document.querySelector(`#n${ele}`).style.opacity = opacityValue;
+};
 
 const highLightDiv = (list) => {
   //   list.forEach(async (ele) => {
@@ -37,47 +34,70 @@ const highLightDiv = (list) => {
   //     changeOpacity(ele, 0.3);
   //     //Todo: add sound effect
   //   });
-  let lengthOfList = list.length;
-  let count = 0;
+  try {
+    let lengthOfList = list.length;
+    let count = 0;
 
-  let interval = setInterval(() => {
-    let currentCount = count;
-    changeOpacity(list[currentCount], 1);
-    setTimeout(() => changeOpacity(list[currentCount], 0.3), 300);
-    count++;
-    if (count === lengthOfList) clearInterval(interval);
-  }, 800);
+    if (list.length === 0) {
+      return;
+    }
+
+    let interval = setInterval(() => {
+      try {
+        let currentCount = count;
+        changeOpacity(list[currentCount], 1);
+        setTimeout(() => changeOpacity(list[currentCount], 0.3), 300);
+        count++;
+        if (count === lengthOfList) {
+          clearInterval(interval);
+        }
+      } catch (e) {
+        console.log('inside set interval ==> ', e);
+      }
+    }, 800);
+  } catch (e) {
+    console.log('inside highlightDiv ==> ', e);
+  }
 };
 
 console.log(tiles);
 
 tiles.forEach((ele) => {
   ele.addEventListener('click', (event) => {
-    console.log(event.target.id[1]);
-    let idNumber = Number(event.target.id[1]);
-    userArr.push(idNumber);
-    changeOpacity(idNumber, 1);
-    setTimeout(() => changeOpacity(idNumber, 0.3), 300);
-    if (!compareInputs(patternArr, userArr)) {
-      highLightDiv(patternArr);
-    } else {
-      if (patternArr.length === userArr.length) {
-        console.log('here');
-        score++;
-        scoreElement.textContent = score;
-        populatePattern();
+    try {
+      console.log(event.target.id[1]);
+      let idNumber = Number(event.target.id[1]);
+      userArr.push(idNumber);
+      changeOpacity(idNumber, 1);
+      setTimeout(() => changeOpacity(idNumber, 0.3), 300);
+      if (!compareInputs(patternArr, userArr)) {
+        highLightDiv(patternArr);
+      } else {
+        if (patternArr.length === userArr.length) {
+          console.log('here');
+          userArr = [];
+          score++;
+          scoreElement.textContent = score;
+          populatePattern();
+        }
       }
+    } catch (e) {
+      console.log('inside individual tiles', e);
     }
   });
 });
 
 const compareInputs = (patternArr, userArr) => {
-  if (userArr.length === 0 || patternArr.length === 0) return false;
-  for (let i = 0; i < userArr.length; i++) {
-    if (patternArr[i] !== userArr[i]) {
-      return false;
+  try {
+    if (userArr.length === 0 || patternArr.length === 0) return false;
+    for (let i = 0; i < userArr.length; i++) {
+      if (patternArr[i] !== userArr[i]) {
+        return false;
+      }
     }
-  }
 
-  return true;
+    return true;
+  } catch (e) {
+    console.log('Compare arrays => ', e);
+  }
 };
