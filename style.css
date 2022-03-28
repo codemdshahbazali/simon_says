@@ -46,7 +46,7 @@ main {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   border-radius: 50%;
-  gap: 15px;
+  gap: 10px;
   padding: 30px;
   position: relative;
   border: 1px solid black;
