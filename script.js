@@ -1,12 +1,15 @@
 let score = 1;
-const patternArr = [];
+let patternArr = [];
 let userArr = [];
 let flag = true;
 let userTurn = false;
+let totalNoOfAttempts = 3;
+let interval;
 // let computerTurn = true;
 
 const scoreElement = document.querySelector('.score_container');
 const tiles = document.querySelectorAll('.tiles');
+const attempts = document.querySelector('.attmepts');
 
 const clip1 = document.querySelector('#clip1');
 const clip2 = document.querySelector('#clip2');
@@ -14,6 +17,13 @@ const clip3 = document.querySelector('#clip3');
 const clip4 = document.querySelector('#clip4');
 const win = document.querySelector('#win');
 const wrong = document.querySelector('#wrong');
+const modelText = document.querySelector('#model-text');
+
+var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+  keyboard: false,
+});
+
+attempts.textContent = totalNoOfAttempts;
 
 scoreElement.addEventListener('click', () => {
   if (flag) {
@@ -75,11 +85,11 @@ const highLightDiv = (list) => {
       return;
     }
 
-    let interval = setInterval(() => {
+    interval = setInterval(() => {
       try {
         let currentCount = count;
         changeOpacity(list[currentCount], 1);
-        setTimeout(() => changeOpacity(list[currentCount], 0.3), 400);
+        setTimeout(() => changeOpacity(list[currentCount], 0.5), 400);
         count++;
         if (count === lengthOfList) {
           clearInterval(interval);
@@ -103,16 +113,29 @@ tiles.forEach((ele) => {
         userArr.push(idNumber);
         console.log(userArr);
         changeOpacity(idNumber, 1);
-        setTimeout(() => changeOpacity(idNumber, 0.3), 300);
+        setTimeout(() => changeOpacity(idNumber, 0.5), 300);
         if (!compareInputs(patternArr, userArr)) {
-          userTurn = false;
-          scoreElement.textContent = '?';
-          wrong.play();
-          setTimeout(() => {
-            scoreElement.textContent = score;
-            highLightDiv(patternArr);
-            userArr = [];
-          }, 700);
+          totalNoOfAttempts--;
+          attempts.textContent = totalNoOfAttempts;
+          if (totalNoOfAttempts === 0) {
+            setTimeout(() => {
+              scoreElement.textContent = 'Restart';
+              myModal.show();
+              modelText.textContent = score;
+              //alert(`Game Over. Your score is ${score}`);
+              reset();
+              return;
+            }, 300);
+          } else {
+            userTurn = false;
+            scoreElement.textContent = '?';
+            wrong.play();
+            setTimeout(() => {
+              scoreElement.textContent = score;
+              highLightDiv(patternArr);
+              userArr = [];
+            }, 700);
+          }
         } else {
           if (patternArr.length === userArr.length) {
             userArr = [];
@@ -146,4 +169,16 @@ const compareInputs = (patternArr, userArr) => {
   } catch (e) {
     console.log('Compare arrays => ', e);
   }
+};
+
+const reset = () => {
+  patternArr = [];
+  userArr = [];
+  flag = true;
+  userTurn = false;
+  totalNoOfAttempts = 3;
+  score = 1;
+  attempts.textContent = totalNoOfAttempts;
+  clearInterval(interval);
+  scoreElement.style.cursor = 'pointer';
 };

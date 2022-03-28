@@ -6,16 +6,35 @@
   margin: 0;
 }
 
+:root {
+  --mainClr: #bdb2a5;
+  --tile1Clr: #c0eda6;
+  --tile2Clr: #fd5d5d;
+  --tile3Clr: #fff7bc;
+  --tile4Clr: #00af91;
+  --startBtnClr: #5800ff;
+}
+
 body {
   height: 100vh;
+  font-family: 'Open Sans', sans-serif;
 }
 
 main {
-  background-color: rgb(179 169 157);
+  background-color: var(--mainClr);
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.score {
+  margin-bottom: 20px;
+  font-size: 35px;
+  font-weight: 700;
+  color: rgb(56, 55, 55);
+  font-size: min(5vw, 5vh);
 }
 
 .container {
@@ -38,7 +57,7 @@ main {
 
 .tiles {
   cursor: pointer;
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .tiles:active {
@@ -46,25 +65,25 @@ main {
 }
 
 .tile1 {
-  background-color: #34e89e;
+  background-color: var(--tile1Clr);
   grid-area: tile1;
   border-top-left-radius: 100%;
 }
 
 .tile2 {
-  background-color: #ef3b36;
+  background-color: var(--tile2Clr);
   grid-area: tile2;
   border-top-right-radius: 100%;
 }
 
 .tile3 {
-  background-color: #ffc371;
+  background-color: var(--tile3Clr);
   grid-area: tile3;
   border-bottom-left-radius: 100%;
 }
 
 .tile4 {
-  background-color: #1cb5e0;
+  background-color: var(--tile4Clr);
   grid-area: tile4;
   border-bottom-right-radius: 100%;
 }
@@ -77,7 +96,7 @@ main {
       rgba(0, 0, 0, 0) 60%,
       rgb(119, 119, 119) 80%
     ),
-    rgb(0, 0, 68);
+    var(--startBtnClr);
   color: rgb(255, 255, 255);
   box-shadow: rgb(0 0 0 / 50%) 2px 2px 10px 0px;
   width: min(20vh, 20vw);
