@@ -119,7 +119,7 @@ tiles.forEach((ele) => {
           attempts.textContent = totalNoOfAttempts;
           if (totalNoOfAttempts === 0) {
             setTimeout(() => {
-              scoreElement.textContent = 'Restart';
+              scoreElement.textContent = 'Go';
               myModal.show();
               modelText.textContent = score;
               //alert(`Game Over. Your score is ${score}`);
