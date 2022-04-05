@@ -12,3 +12,5 @@ score - press/increment
 
         if incorrect
             reapat pattern and show ? for few seconds and show number
+
+2 apis for generating word and checking it

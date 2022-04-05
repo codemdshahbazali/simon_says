@@ -24,6 +24,10 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <script src="./script.js" defer></script>
     <audio id="clip1">
       <!-- <source src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" /> -->
@@ -51,13 +55,22 @@
     </audio>
   </head>
   <body>
+    <div class="game-title">
+      <i
+        title="How to play"
+        class="fa fa-question-circle-o gameInstruction"
+        aria-hidden="true"
+      ></i>
+      <h1>Simon Says</h1>
+    </div>
+    <hr />
     <main>
       <div class="score">
         <label>Attempts left: </label>
         <span class="attmepts">3</span>
       </div>
       <div class="container">
-        <div class="score_container">Press</div>
+        <div class="score_container">Go</div>
         <div class="tiles tile1" id="n1"></div>
         <div class="tiles tile2" id="n2"></div>
         <div class="tiles tile3" id="n3"></div>
