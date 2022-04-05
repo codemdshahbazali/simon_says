@@ -102,5 +102,59 @@
         </div>
       </div>
     </main>
+    <!-- Instruction Modal -->
+    <div
+      class="modal fade"
+      id="gameInstruction"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark" id="staticBackdropLabel">
+              How to Play
+            </h5>
+          </div>
+          <div class="modal-body">
+            <ol>
+              <li>Guess the WORDLE in six tries.</li>
+              <li>
+                Each guess must be a valid five-letter word. Hit the enter
+                button to submit.
+              </li>
+              <li>
+                After each guess, the color of the tiles will change to show how
+                close your guess was to the word.
+              </li>
+              <li>
+                If the tile turns green then the letter is in the word and in
+                the correct spot
+              </li>
+              <li>
+                If the tile turns orange then the letter is in the word and in
+                the wrong spot
+              </li>
+              <li>
+                If the title turns grey then the letter not in the word in any
+                spot.
+              </li>
+            </ol>
+          </div>
+          <div class="modal-footer mx-auto">
+            <button
+              type="button"
+              class="btn btn-secondary btn-lg"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

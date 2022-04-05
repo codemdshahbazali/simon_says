@@ -182,3 +182,16 @@ const reset = () => {
   clearInterval(interval);
   scoreElement.style.cursor = 'pointer';
 };
+
+const gameInstruction = document.querySelector('.gameInstruction');
+
+let gameInstructionModal = new bootstrap.Modal(
+  document.getElementById('gameInstruction'),
+  {
+    keyboard: false,
+  }
+);
+
+gameInstruction.addEventListener('click', () => {
+  gameInstructionModal.show();
+});
